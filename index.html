@@ -21,4 +21,57 @@
             border-radius: 15px;
             box-shadow: 0 0 20px rgba(0,0,0,0.15);
             text-align: center;
-            widt
+            width: 350px;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+        }
+
+        .choice {
+            background: #f2f2f2;
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 15px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .choice:hover {
+            background: #d6ecff;
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+
+<div class="box">
+    <h2>Choose Your Creature</h2>
+
+    <div class="choice" onclick="selectCreature('Raccoon')">
+        🦝 Raccoon (Grow a Garden)
+    </div>
+
+    <div class="choice" onclick="selectCreature('Fox')">
+        🦊 Fox
+    </div>
+
+    <div class="choice" onclick="selectCreature('Dragonfly')">
+        🪰 Dragonfly
+    </div>
+
+    <p id="result" style="margin-top:20px; font-weight:bold;"></p>
+</div>
+
+<script>
+function selectCreature(creature) {
+    document.getElementById("result").innerText =
+        "You chose: " + creature;
+
+    // Saves choice in browser so they keep it next time
+    localStorage.setItem("chosenCreature", creature);
+}
+</script>
+
+</body>
+</html>
