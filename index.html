@@ -16,7 +16,7 @@
         .box {
             background: white;
             padding: 30px;
-            border-radius: 12px;
+            border-radius: 10px;
             width: 320px;
             box-shadow: 0 0 15px rgba(0,0,0,0.2);
         }
@@ -33,46 +33,17 @@
             margin-top: 15px;
             width: 100%;
             padding: 10px;
-            background: #4CAF50;
-            color: white;
+            background: #00a2ff;
             border: none;
+            color: white;
             border-radius: 6px;
             cursor: pointer;
+            font-size: 16px;
         }
-    </style>
-</head>
-<body>
 
-<div class="box">
-    <h2>Create an Account</h2>
-
-    <input id="name" placeholder="Enter your name">
-    <input id="email" placeholder="Enter your email">
-
-    <button onclick="saveUser()">Sign Up</button>
-
-    <p id="msg" style="color:green; display:none;">Saved!</p>
-</div>
-
-<script>
-function saveUser() {
-    const name = document.getElementById("name").value;
-    const email = document.getElementById("email").value;
-
-    if (!name || !email) {
-        alert("Please fill in all fields");
-        return;
-    }
-
-    let users = JSON.parse(localStorage.getItem("users")) || [];
-
-    users.push({ name, email });
-
-    localStorage.setItem("users", JSON.stringify(users));
-
-    document.getElementById("msg").style.display = "block";
-}
-</script>
-
-</body>
-</html>
+        #savedUsers {
+            margin-top: 20px;
+            background: #eee;
+            padding: 10px;
+            border-radius: 6px;
+            font-size
