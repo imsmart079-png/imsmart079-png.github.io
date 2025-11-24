@@ -1,25 +1,78 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8" />
-  <title>My Homepage</title>
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <style>
-    body { font-family: system-ui, sans-serif; padding: 48px; max-width: 720px; margin: auto; }
-    header { margin-bottom: 24px; }
-    a { text-decoration: none; }
-  </style>
+    <meta charset="UTF-8">
+    <title>Signup Page</title>
+    <style>
+        body {
+            font-family: Arial;
+            background: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .box {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            width: 320px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.2);
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            margin-top: 15px;
+            width: 100%;
+            padding: 10px;
+            background: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
-<header>
-    <h1>Hi – I'm [Your Name]</h1>
-    <p>Example homepage deployed with GitHub Pages.</p>
-</header>
 
-<main>
-    <p>This is a demo site. Replace this content with your project or portfolio.</p>
-    <p><a href="https://github.com">Learn more about GitHub Pages</a></p>
-</main>
+<div class="box">
+    <h2>Create an Account</h2>
+
+    <input id="name" placeholder="Enter your name">
+    <input id="email" placeholder="Enter your email">
+
+    <button onclick="saveUser()">Sign Up</button>
+
+    <p id="msg" style="color:green; display:none;">Saved!</p>
+</div>
+
+<script>
+function saveUser() {
+    const name = document.getElementById("name").value;
+    const email = document.getElementById("email").value;
+
+    if (!name || !email) {
+        alert("Please fill in all fields");
+        return;
+    }
+
+    let users = JSON.parse(localStorage.getItem("users")) || [];
+
+    users.push({ name, email });
+
+    localStorage.setItem("users", JSON.stringify(users));
+
+    document.getElementById("msg").style.display = "block";
+}
+</script>
 
 </body>
 </html>
