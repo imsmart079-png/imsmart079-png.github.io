@@ -1,84 +1,116 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Creature Select</title>
+    <title>Garden Creatures</title>
     <style>
         body {
-            background: #d9ecff;
-            font-family: Arial, sans-serif;
+            font-family: Arial;
+            background: #cce6ff;
             text-align: center;
-            margin: 0;
-            padding: 0;
+            padding-top: 80px;
         }
 
-        h1 {
-            margin-top: 40px;
-            font-size: 40px;
-        }
+        h1 { font-size: 40px; }
 
-        .creature-container {
-            display: flex;
-            justify-content: center;
-            margin-top: 40px;
-            gap: 40px;
-        }
-
-        .creature {
-            background: white;
+        .animal {
+            display: inline-block;
+            margin: 20px;
             padding: 20px;
-            width: 180px;
+            background: white;
+            width: 200px;
             border-radius: 20px;
-            box-shadow: 0 0 15px rgba(0,0,0,0.2);
             cursor: pointer;
-            transition: 0.2s;
+            font-size: 22px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.2);
+            transition: 0.3s;
         }
 
-        .creature:hover {
+        .animal:hover {
             transform: scale(1.1);
-            box-shadow: 0 0 25px rgba(0,0,0,0.3);
-        }
-
-        #selected {
-            margin-top: 40px;
-            font-size: 24px;
-            font-weight: bold;
         }
     </style>
 </head>
 <body>
 
-    <h1>Pick Your Creature</h1>
+<h1>Choose Your Creature</h1>
 
-    <div class="creature-container">
-        <div class="creature" onclick="selectCreature('Raccoon')">
-            🦝<br>Raccoon
-        </div>
+<div class="animal" onclick="selectAnimal('Fox')">🦊 Fox</div>
+<div class="animal" onclick="selectAnimal('Raccoon')">🦝 Raccoon</div>
+<div class="animal" onclick="selectAnimal('Dragonfly')">🪰 Dragonfly</div>
 
-        <div class="creature" onclick="selectCreature('Fox')">
-            🦊<br>Fox
-        </div>
+<script>
+function selectAnimal(animal) {
+    localStorage.setItem("chosenAnimal", animal);
+    window.location.href = "signup.html";
+}
+</script>
 
-        <div class="creature" onclick="selectCreature('Dragonfly')">
-            🪰<br>Dragonfly
-        </div>
-    </div>
-
-    <div id="selected"></div>
-
-    <script>
-        // Load saved choice
-        const saved = localStorage.getItem("creature");
-        if (saved) {
-            document.getElementById("selected").innerText =
-                "You previously chose: " + saved;
+</body>
+</html>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sign Up</title>
+    <style>
+        body {
+            font-family: Arial;
+            background: #dfffd8;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
         }
 
-        function selectCreature(name) {
-            localStorage.setItem("creature", name);
-            document.getElementById("selected").innerText =
-                "You selected: " + name;
+        .box {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            width: 300px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.2);
         }
-    </script>
+
+        input, button {
+            width: 100%;
+            padding: 10px;
+            margin-top: 12px;
+            border-radius: 8px;
+            border: 1px solid #aaa;
+        }
+
+        button {
+            background: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<div class="box">
+    <h2>Create Account</h2>
+    <div id="animalDisplay"></div>
+
+    <input id="username" placeholder="Username">
+    <input id="nickname" placeholder="Nickname">
+    <button onclick="saveUser()">Sign Up</button>
+</div>
+
+<script>
+document.getElementById("animalDisplay").innerHTML =
+    "Creature: <b>" + (localStorage.getItem("chosenAnimal") || "None") + "</b>";
+
+function saveUser(){
+    const username = document.getElementById("username").value;
+    const nickname = document.getElementById("nickname").value;
+
+    const data = { username, nickname, creature: localStorage.getItem("chosenAnimal") };
+
+    localStorage.setItem("gameAccount", JSON.stringify(data));
+    alert("Account created! (Saved on this device only)");
+    window.location.href = "play.html";
+}
+</script>
 
 </body>
 </html>
